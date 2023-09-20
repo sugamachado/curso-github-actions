@@ -1,0 +1,44 @@
+name: Expresiones
+on:
+  workflow_dispatch:
+    inputs:
+      edad:
+        description: '¿Qué edad tienes?'
+        required: true
+        type: integer
+      nombre:
+        description: ¿Cómo te llamas?
+        required: true
+        default: Agustina
+        type: string
+      nacionalidad:
+        description: ¿Dónde naciste?
+        required: true
+        type: string
+jobs:
+  mayor:
+    if: ${{ inputs.edad >= 18 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: correr script
+        run: echo ${{ inputs.nombre }} es mayor de edad
+  menor: 
+    if: ${{ inputs.edad < 18 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: correr script
+        run: echo ${{ inputs.nombre }} es menor de edad
+  suscripcion_no:
+    if: ${{ inputs.nacionalidad != España }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: correr script
+        run: echo ${{ inputs.nacionalidad}} no es un país apto para la suscripción.
+  suscripcion_si:
+    if: ${{ inputs.nacionalidad == España }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: correr script
+        run: echo ${{ inputs.nacionalidad}} sí es un país apto para la suscripción.       
+
+ 
